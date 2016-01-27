@@ -29,6 +29,8 @@ namespace PaintMLSimulationApplication.sources
         {
             Random random = new Random();
             int index = random.Next(0, this.Tinters.Count);
+
+            EventLogger.TinterIdentifier = index.ToString();
             this.Tinters.ElementAt(index).DoWork(recipe);
         }
     }

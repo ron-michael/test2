@@ -61,24 +61,30 @@ namespace PaintMLSimulationApplication
             List<Store> stores = Setup();
             Random random = new Random();
             List<FormulationRecipe> recipeList = Enumerable.ToList(recipes.Values);
+            List<String> recipeNameList = Enumerable.ToList(recipes.Keys);
 
-            EventLogger.label = unit;
-            EventLogger.increment = increment;
+            EventLogger.Unit = unit;
+            EventLogger.Increment = increment;
 
             for (int i = 0; i < loops; i++)
             {
-                EventLogger.loopNumber = i;
+                EventLogger.LoopNumber = i;
 
+                int storeIndex = 0;
                 foreach (var store in stores)
                 {
                     int chance = random.Next(1, nonDispenseChance + 2);
 
                     if (chance == 1)
                     {
+                        EventLogger.StoreIdentifier = storeIndex.ToString();
                         int index = random.Next(recipeList.Count);
+                        EventLogger.RecipeIdentifier = recipeNameList.ElementAt(index);
                         FormulationRecipe recipe = recipeList.ElementAt(index);
                         store.DoWork(recipe);
                     }
+
+                    storeIndex += 1;
                 }
             }
         }

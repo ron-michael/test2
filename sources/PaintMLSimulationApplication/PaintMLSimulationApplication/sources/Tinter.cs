@@ -34,6 +34,7 @@ namespace PaintMLSimulationApplication.sources
                 bool found = this.pumps.TryGetValue(ingredient.Color, out pump);
                 if (found)
                 {
+                    EventLogger.PumpIdentifier = pump.identifier;
                     pump.DoWork(ingredient.Steps, ingredient.Volume);
                 }
             }
