@@ -69,11 +69,11 @@ namespace PaintMLSimulationApplication
             {
                 EventLogger.loopNumber = i;
 
-                int chance = random.Next(1, nonDispenseChance + 2);
-
-                if (chance == 1)
+                foreach (var store in stores)
                 {
-                    foreach (var store in stores)
+                    int chance = random.Next(1, nonDispenseChance + 2);
+
+                    if (chance == 1)
                     {
                         int index = random.Next(recipeList.Count);
                         FormulationRecipe recipe = recipeList.ElementAt(index);
